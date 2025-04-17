@@ -1,0 +1,7 @@
+  library(caret)
+  library(parallel)
+  load("data/output/datos_rf.rda")
+  cl<-makePSOCKcluster(6)
+  registerDoParallel(cl)
+  Pmodel<- train(nivel~ prec+LAI+penmean+longitude+latitude,  data =datos, methods="rf", importance=TRUE,
+                 na.action = na.omit)
